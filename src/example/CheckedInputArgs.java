@@ -68,7 +68,7 @@ public class CheckedInputArgs {
     private boolean checkInputFile() {
         file = new File(inputFile);
         if (!file.exists()) {
-            Main.errorPrint("Указанного выходного файла не существует");
+            Main.errorPrint("Указанного входного файла не существует");
             return false;
         } else if (!file.isFile()) {
             Main.errorPrint("Указанный входной файл не является файлом");

@@ -10,13 +10,13 @@ import java.nio.file.Path;
 
 import static example.Main.errorPrint;
 
-public class Download implements Runnable {
-    private static String directoryPath;
+public class DownloadUnlimited implements Runnable {
+    static String directoryPath;
 
-    private final String stringHttpUrl;
-    private final String downloadName;
+    final String stringHttpUrl;
+    final String downloadName;
 
-    public Download(String stringHttpUrl, String downloadName) {
+    public DownloadUnlimited(String stringHttpUrl, String downloadName) {
         this.stringHttpUrl = stringHttpUrl;
         this.downloadName = downloadName;
     }
@@ -49,10 +49,10 @@ public class Download implements Runnable {
 
         } catch (IOException e) {
             errorPrint(e.getMessage());
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (InterruptedException e) {
             errorPrint(e.getMessage());
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 }

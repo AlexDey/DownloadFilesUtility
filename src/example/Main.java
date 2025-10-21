@@ -22,6 +22,7 @@ public class Main {
 //    private static String directoryPath = "D:\\My_documents\\Java\\Projects\\DownloadFilesUtility\\downloadFiles";
 
     private static final int THREAD_COUNT = 3;
+    static final int BYTE_PER_SECOND = 1024*100; // 1КB/s * ...
 
     public static void main(String[] args) {
 //        downloadOneFile(1); // 0,1,2
@@ -33,10 +34,11 @@ public class Main {
         System.out.println("============");
 
         // Вот тут экзекьютор с фиксированными потоками и будем писать
-        Download.setDirectoryPath(checker.getDirectoryPath());
+        DownloadUnlimited.setDirectoryPath(checker.getDirectoryPath());
+
         try (ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT)) {
             for (int i = 0; i < downloadNames.size(); i++) {
-                executorService.submit(new Download(checker.getInputHttps().get(i) ,downloadNames.get(i)));
+                executorService.submit(new DownloadLimitResponseInputStream(checker.getInputHttps().get(i) ,downloadNames.get(i)));
             }
         }
         System.out.println("Программа завершена");
@@ -71,6 +73,6 @@ public class Main {
     }
 
     static void errorPrint(String message) {
-        System.out.print("\nОШИБКА: " + message);
+        System.out.println("ОШИБКА: " + message);
     }
 }
